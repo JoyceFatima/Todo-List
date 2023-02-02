@@ -1,11 +1,11 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { PlusCircle } from "phosphor-react";
 import { Header } from "./components/Header";
 import { Task } from "./components/Task";
 import { NotFound } from "./components/NotFound";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
 
@@ -36,35 +36,35 @@ const listOfTasks = [
 ];
 
 const schema = yup.object({
-  title: yup.string().required().min(1),
-  completed: yup.boolean(),
-})
+  title: yup.string().required().min(1).max(100),
+});
 
 function App() {
   const [newTask, setNewTask] = useState("");
   const [tasks, setTask] = useState(listOfTasks);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
-    resolver: yupResolver(schema)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<IFormInput>({
+    resolver: yupResolver(schema),
   });
 
   const allTasks = tasks.length;
 
   const completedTasks = tasks.filter((task) => task.completed === true).length;
 
-  function changeEvent(event: ChangeEvent<HTMLInputElement>) {
-    setNewTask(event.target.value);
-  }
-
   const handleNewTask: SubmitHandler<IFormInput> = (data) => {
     const newTaskInList = {
       id: tasks.length + 1,
-      title: newTask,
+      title: data.title,
       completed: false,
     };
     setTask((task) => [newTaskInList, ...task]);
-    setNewTask("");
-  }
+    reset();
+  };
 
   function deleteTask(id: number) {
     const deletingTask = tasks.filter((c) => c.id !== id);
@@ -80,8 +80,6 @@ function App() {
             type="text"
             placeholder="Adicione uma nova tarefa"
             {...register("title")}
-            onChange={changeEvent}
-            value={newTask}
           />
           <button type="submit">
             Criar
@@ -89,7 +87,8 @@ function App() {
           </button>
         </form>
         <div className={styles.errors}>
-          {errors.title && <span>Insira uma tarefa.</span>}
+          {errors?.title?.type === "required" && <span>Insira uma tarefa.</span>}
+          {errors?.title?.type === "max" && <span>O título deve ter no máximo 100 caracteres.</span>}
         </div>
         <div className={styles.stateOfTheTask}>
           <button className={styles.tasksCreated}>
