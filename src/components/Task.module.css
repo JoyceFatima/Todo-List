@@ -1,0 +1,77 @@
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background: var(--gray-500);
+  color: var(--gray-100);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  text-align: flex-start;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.checkbox {
+  display: block;
+  cursor: pointer;
+}
+
+.roundedCheckbox {
+  width: 1.4rem;
+  height: 1.4rem;
+  background: none;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  outline: none;
+  border: 2px solid var(--blue-300);
+  margin: 0.5rem;
+}
+
+.roundedCheckbox:checked {
+  clip-path: circle(50% at 50% 50%);
+  border: 2px solid var(--purple-500);
+  background-color: var(--purple-500);
+}
+
+.roundedCheckbox:checked + label {
+  color: var(--gray-300);
+  text-decoration: line-through;
+  cursor: pointer;
+}
+
+.item label {
+  inline-size: 39rem;
+  word-wrap: break-word;
+  margin: 0.5rem 0;
+  cursor: pointer;
+}
+
+.item button {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+}
+
+.item button:hover {
+  background: var(--gray-400);
+  border-radius: 4px;
+}
+
+.item svg {
+  color: var(--gray-300);
+}
+
+.item svg:hover {
+  color: var(--red-500)
+}

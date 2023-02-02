@@ -1,0 +1,27 @@
+.notFoundList {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 4rem 1.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  border-top: 1px solid var(--gray-300);
+  border-radius: 8px;
+}
+
+.notFoundList > svg {
+  color: var(--gray-300);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.notFoundList > p {
+  color: var(--gray-300);
+  font-weight: bold;
+}
+
+.notFoundList > span {
+  color: var(--gray-300);
+}
