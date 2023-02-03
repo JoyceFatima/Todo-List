@@ -87,3 +87,10 @@
 .completedTasks {
   color: var(--purple-300)
 }
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 23rem;
+    margin: auto;
+  }
+}

@@ -51,13 +51,14 @@
 }
 
 .item label {
-  inline-size: 39rem;
+  inline-size: 38rem;
   word-wrap: break-word;
   margin: 0.5rem 0;
   cursor: pointer;
 }
 
 .item button {
+  display: block;
   padding: 0.5rem;
   background: transparent;
   border: none;
@@ -74,4 +75,15 @@
 
 .item svg:hover {
   color: var(--red-500)
+}
+
+@media (max-width: 768px) {
+  
+  .item label {
+    inline-size: 14rem;
+    word-wrap: break-word;
+    margin: 0.5rem 0;
+    cursor: pointer;
+  }
+
 }
